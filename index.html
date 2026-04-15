@@ -621,4 +621,38 @@
       <article class="contact glass fade">
         <div>
           <div class="eyebrow" style="color:#94e6cf">Contact</div>
-          <h3>如果需要一个更像成品、也更适合正式使用的网站，现在就可以
+          <h3>如果需要一个更像成品、也更适合正式使用的网站，现在就可以开始</h3>
+          <p>适合品牌展示、服务介绍、个人工作室主页，以及希望把网站气质、内容表达与 AI 能力整理得更完整的使用场景。</p>
+          <p class="note">这一次不是换一个样式，而是把整个页面的语言、结构和完成度一起拉高。</p>
+        </div>
+        <div class="row">
+          <a class="contact-link" href="mailto:1932966181@qq.com">邮箱联系</a>
+          <a class="contact-link" href="https://cassie-dev-wu.github.io" target="_blank" rel="noreferrer">查看线上站点</a>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <p>© 2026 Cassie Studio. Refined interface edition.</p>
+    </footer>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.cap-tab');
+    const panels = document.querySelectorAll('[data-panel]');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.target;
+        tabs.forEach(item => {
+          const on = item === tab;
+          item.classList.toggle('on', on);
+        });
+        panels.forEach(panel => {
+          panel.hidden = panel.dataset.panel !== target;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
