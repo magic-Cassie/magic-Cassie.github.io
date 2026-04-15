@@ -1,98 +1,880 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cassie | 高端网页设计与 AI 应用</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#07111f;--panel:rgba(11,23,39,.56);--line:rgba(255,255,255,.12);--bright:rgba(166,220,255,.5);--text:#f5f7fb;--muted:#aeb8c8;--accent:#8dd8ff;--warm:#ffd8a8;--shadow:0 24px 80px rgba(0,0,0,.34);--serif:"Iowan Old Style","Palatino Linotype","Noto Serif SC","Songti SC",serif;--sans:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);color:var(--text);background:radial-gradient(circle at top left,rgba(141,216,255,.14),transparent 28%),radial-gradient(circle at 85% 20%,rgba(255,216,168,.14),transparent 24%),linear-gradient(180deg,#081220 0%,#09111d 45%,#060b14 100%);min-height:100vh;overflow-x:hidden}
-body:before,body:after{content:"";position:fixed;width:34rem;height:34rem;border-radius:50%;filter:blur(90px);opacity:.24;pointer-events:none;z-index:0}body:before{top:-10rem;left:-8rem;background:#66c7ff}body:after{right:-10rem;bottom:10%;background:#f6b177}
-a{text-decoration:none;color:inherit}.shell{position:relative;z-index:1}.glass{background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:var(--shadow)}
-.topbar,.hero,.section,footer{width:min(1180px,calc(100% - 40px));margin:0 auto}.topbar{position:sticky;top:18px;z-index:10;margin-top:18px;padding:14px 20px;border-radius:22px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:12px;font-weight:600;letter-spacing:.04em}.brand-mark{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(141,216,255,.24),rgba(255,216,168,.18));border:1px solid rgba(255,255,255,.16);font-family:var(--serif)}.nav-links{display:flex;gap:24px;list-style:none}.nav-links a{color:var(--muted);font-size:.94rem}.nav-links a:hover{color:var(--text)}
-.hero{margin-top:34px;min-height:calc(100vh - 140px);display:grid;grid-template-columns:1.08fr .92fr;gap:28px}.hero-copy,.hero-panel,.card,.project-card,.about-panel,.contact-panel{border-radius:28px;padding:32px;position:relative;overflow:hidden}.hero-copy:before,.hero-panel:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.08),transparent 42%);pointer-events:none}.hero-tag,.project-badge,.tag{display:inline-flex;align-items:center;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:var(--accent);font-size:.84rem}.hero-tag{margin-bottom:24px}.hero-copy h1,.section-heading h2,.quote,.card-title,.project-copy h3,.about-copy h3,.contact-panel h3,.metric-value{font-family:var(--serif);font-weight:600;letter-spacing:-.03em}.hero-copy h1{font-size:clamp(3rem,6vw,5.6rem);line-height:.96;max-width:8ch;margin-bottom:22px}.hero-copy h1 span{color:var(--warm)}.hero-copy p,.section-heading p,.card p,.project-copy p,.about-copy p,.contact-panel p,.mini-panel span{color:var(--muted);line-height:1.8}.hero-actions,.contact-actions,.project-tags,.about-tags{display:flex;flex-wrap:wrap;gap:12px}.hero-actions{margin:30px 0 36px}.btn,.contact-link{min-height:48px;padding:0 22px;border-radius:999px;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;transition:.25s}.btn:hover,.contact-link:hover,.card:hover,.project-card:hover,.about-panel:hover,.contact-panel:hover,.mini-panel:hover{transform:translateY(-3px)}.btn-primary{background:linear-gradient(135deg,#90d9ff,#f4c998);color:#07111f;font-weight:600}.btn-secondary,.contact-link{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.03);color:var(--text)}.hero-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.metric,.stat{padding:18px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}.metric-label,.stat span{color:var(--muted);font-size:.9rem;line-height:1.6}
-.hero-panel{display:grid;gap:16px;align-content:start}.quote{font-size:clamp(1.55rem,3vw,2.5rem);line-height:1.18;margin:8px 0 14px}.mini-panel{padding:22px;border-radius:22px}.mini-panel strong{display:block;margin-bottom:8px}.section{padding:92px 0}.eyebrow{color:var(--accent);font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;margin-bottom:16px}.section-heading{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:end;margin-bottom:42px}.section-heading h2{font-size:clamp(2rem,4vw,3.5rem);line-height:1.05}
-.services-grid,.project-grid,.about-layout,.pain-grid,.result-grid,.flow-grid{display:grid;gap:20px}.services-grid{grid-template-columns:repeat(3,1fr)}.card,.project-card,.about-panel,.contact-panel,.mini-panel,.pain-card,.result-card,.flow-card{transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease}.card:after,.project-card:after,.about-panel:after,.contact-panel:after,.mini-panel:after,.pain-card:after,.result-card:after,.flow-card:after{content:"";position:absolute;inset:0;border:1px solid transparent;border-radius:inherit;pointer-events:none;transition:.28s}.card:hover:after,.project-card:hover:after,.about-panel:hover:after,.contact-panel:hover:after,.mini-panel:hover:after,.pain-card:hover:after,.result-card:hover:after,.flow-card:hover:after{border-color:var(--bright);box-shadow:inset 0 0 0 1px rgba(141,216,255,.2)}.card,.pain-card,.result-card,.flow-card{min-height:280px}.card.featured{transform:translateY(-22px);min-height:340px;background:rgba(13,27,45,.78)}.card-index{color:rgba(255,255,255,.42);font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:22px}.card-title{font-size:1.35rem;margin-bottom:14px}.card-list{list-style:none;margin-top:22px;display:grid;gap:12px;color:var(--muted);font-size:.92rem}.card-list li:before{content:"· ";color:var(--accent)}.pain-grid,.result-grid,.flow-grid{grid-template-columns:repeat(3,1fr)}.pain-card,.result-card,.flow-card{position:relative;padding:28px;border-radius:28px;overflow:hidden}.pain-card h3,.result-card h3,.flow-card h3{font-family:var(--serif);font-size:1.35rem;margin-bottom:12px}.pain-card p,.result-card p,.flow-card p{color:var(--muted);line-height:1.8}.result-card strong,.flow-step{display:block;color:var(--accent);font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}.project-grid{grid-template-columns:repeat(2,1fr)}.project-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}.project-mark{width:54px;height:54px;border-radius:18px;background:linear-gradient(135deg,rgba(141,216,255,.22),rgba(255,216,168,.18));border:1px solid rgba(255,255,255,.12);display:grid;place-items:center;font-family:var(--serif)}.project-copy h3{font-size:1.55rem;margin-bottom:12px}.project-tags span,.about-tags span{padding:7px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--muted);font-size:.84rem}.about-layout{grid-template-columns:1.1fr .9fr}.about-copy h3,.contact-panel h3{font-size:1.8rem;margin-bottom:16px}.about-copy p{margin-bottom:12px}.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}.stat strong{display:block;font-family:var(--serif);font-size:1.75rem;margin-bottom:6px}.contact-panel{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}footer{padding:0 0 36px;color:rgba(255,255,255,.44);font-size:.84rem}.fade-up{opacity:0;transform:translateY(28px);animation:fadeUp .8s ease forwards}.delay-1{animation-delay:.08s}.delay-2{animation-delay:.16s}.delay-3{animation-delay:.24s}@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-@media (max-width:980px){.hero,.section-heading,.services-grid,.project-grid,.about-layout,.contact-panel,.pain-grid,.result-grid,.flow-grid{grid-template-columns:1fr}.card.featured{transform:none;min-height:300px}.contact-actions{justify-content:flex-start}}
-@media (max-width:760px){.topbar{top:10px;padding:14px 16px}.nav-links{display:none}.hero{min-height:auto}.hero-copy,.hero-panel,.card,.project-card,.about-panel,.contact-panel{padding:24px}.hero-metrics,.about-stats{grid-template-columns:1fr}.section{padding:72px 0}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cassie Studio 提供高质感网站设计、展示页优化与 AI 效率方案，聚焦品牌形象、专业表达与转化体验。">
+  <title>Cassie Studio | Final Edition</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0c0f0e;
+      --bg-soft: #131817;
+      --surface: rgba(255, 255, 255, 0.72);
+      --surface-strong: rgba(255, 255, 255, 0.86);
+      --surface-dark: rgba(16, 20, 19, 0.68);
+      --text: #101514;
+      --text-invert: #f5f7f6;
+      --muted: #5f6a67;
+      --muted-invert: #b5c0bc;
+      --line: rgba(16, 21, 20, 0.09);
+      --line-invert: rgba(255, 255, 255, 0.1);
+      --accent: #00a885;
+      --accent-deep: #007a61;
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.12);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --serif: "Iowan Old Style", "Palatino Linotype", "Noto Serif SC", "Songti SC", serif;
+      --sans: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(0, 168, 133, 0.18), transparent 22%),
+        radial-gradient(circle at 86% 16%, rgba(255, 255, 255, 0.18), transparent 18%),
+        linear-gradient(180deg, #f4f6f5 0%, #eef2f0 36%, #dfe7e3 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 32rem;
+      height: 32rem;
+      border-radius: 50%;
+      filter: blur(96px);
+      opacity: 0.2;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      top: -10rem;
+      left: -8rem;
+      background: #00a885;
+    }
+
+    body::after {
+      right: -10rem;
+      bottom: 8%;
+      background: #0f1413;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+    }
+
+    .frame,
+    .section,
+    footer {
+      width: min(1220px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .glass {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 18px;
+      z-index: 20;
+      margin-top: 18px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(0, 168, 133, 0.2), rgba(255, 255, 255, 0.9));
+      border: 1px solid rgba(0, 168, 133, 0.16);
+      font-family: var(--serif);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.94rem;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      width: min(1220px, calc(100% - 40px));
+      margin: 28px auto 0;
+      min-height: calc(100vh - 140px);
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-main,
+    .hero-side,
+    .stat-panel,
+    .service-card,
+    .result-card,
+    .case-card,
+    .flow-card,
+    .about-card,
+    .contact-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+    }
+
+    .hero-main,
+    .hero-side,
+    .contact-card {
+      padding: clamp(28px, 4vw, 46px);
+    }
+
+    .hero-main {
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+    }
+
+    .hero-side,
+    .contact-card {
+      background: var(--surface-dark);
+      border: 1px solid var(--line-invert);
+      color: var(--text-invert);
+    }
+
+    .hero-main::before,
+    .hero-side::before,
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.34), transparent 42%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      color: var(--accent-deep);
+      font-size: 0.8rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow.invert {
+      color: #94e6cf;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(0, 168, 133, 0.08);
+      border: 1px solid rgba(0, 168, 133, 0.16);
+      color: var(--accent-deep);
+      font-size: 0.84rem;
+      margin-bottom: 24px;
+    }
+
+    .hero-main h1,
+    .section-heading h2,
+    .hero-quote,
+    .service-card h3,
+    .result-card h3,
+    .case-card h3,
+    .flow-card h3,
+    .about-card h3,
+    .contact-card h3,
+    .metric-number {
+      font-family: var(--serif);
+      letter-spacing: -0.03em;
+      font-weight: 600;
+    }
+
+    .hero-main h1 {
+      font-size: clamp(3.4rem, 6vw, 6.2rem);
+      line-height: 0.94;
+      max-width: 8ch;
+      margin-bottom: 20px;
+    }
+
+    .hero-main h1 span {
+      color: var(--accent-deep);
+    }
+
+    .hero-main p,
+    .section-heading p,
+    .service-card p,
+    .result-card p,
+    .case-card p,
+    .flow-card p,
+    .about-card p,
+    .contact-card p,
+    .hero-side p,
+    .hero-side span,
+    .bullet-list li {
+      line-height: 1.84;
+      font-size: 1rem;
+    }
+
+    .hero-main p,
+    .section-heading p,
+    .service-card p,
+    .result-card p,
+    .case-card p,
+    .flow-card p,
+    .about-card p,
+    .bullet-list li {
+      color: var(--muted);
+    }
+
+    .hero-side p,
+    .hero-side span,
+    .contact-card p {
+      color: var(--muted-invert);
+    }
+
+    .hero-actions,
+    .tag-list,
+    .contact-actions,
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-actions {
+      margin: 30px 0 36px;
+    }
+
+    .btn,
+    .contact-link {
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.24s ease, border-color 0.24s ease, background 0.24s ease;
+    }
+
+    .btn:hover,
+    .contact-link:hover,
+    .service-card:hover,
+    .result-card:hover,
+    .case-card:hover,
+    .flow-card:hover,
+    .about-card:hover,
+    .stat-panel:hover {
+      transform: translateY(-4px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .btn-secondary,
+    .contact-link {
+      border-color: rgba(16, 21, 20, 0.12);
+      background: rgba(255, 255, 255, 0.54);
+      color: var(--text);
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .stat-panel,
+    .service-card,
+    .result-card,
+    .case-card,
+    .flow-card,
+    .about-card {
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.62);
+    }
+
+    .metric-number {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .metric-copy {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .hero-quote {
+      font-size: clamp(1.8rem, 3vw, 2.9rem);
+      line-height: 1.12;
+      margin: 8px 0 10px;
+    }
+
+    .side-card {
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .side-card strong,
+    .result-index,
+    .flow-step,
+    .service-index,
+    .case-index {
+      display: block;
+      margin-bottom: 10px;
+      color: #94e6cf;
+      font-size: 0.84rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .section {
+      padding: 96px 0;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 34px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height: 1.04;
+    }
+
+    .services-grid,
+    .results-grid,
+    .case-grid,
+    .flow-grid,
+    .about-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+      align-items: stretch;
+    }
+
+    .service-card.featured {
+      transform: translateY(-20px);
+      background: linear-gradient(180deg, rgba(0, 168, 133, 0.1), rgba(255, 255, 255, 0.84));
+    }
+
+    .service-card::after,
+    .result-card::after,
+    .case-card::after,
+    .flow-card::after,
+    .about-card::after,
+    .stat-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 1px solid transparent;
+      border-radius: inherit;
+      pointer-events: none;
+      transition: border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .service-card:hover::after,
+    .result-card:hover::after,
+    .case-card:hover::after,
+    .flow-card:hover::after,
+    .about-card:hover::after,
+    .stat-panel:hover::after {
+      border-color: rgba(0, 168, 133, 0.42);
+      box-shadow: inset 0 0 0 1px rgba(0, 168, 133, 0.12);
+    }
+
+    .service-card h3,
+    .result-card h3,
+    .case-card h3,
+    .flow-card h3,
+    .about-card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 14px;
+    }
+
+    .bullet-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .bullet-list li::before {
+      content: "· ";
+      color: var(--accent-deep);
+    }
+
+    .results-grid,
+    .flow-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .result-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(236, 242, 239, 0.88));
+    }
+
+    .case-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .case-card {
+      padding: 26px;
+    }
+
+    .case-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .case-mark {
+      width: 58px;
+      height: 58px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(0, 168, 133, 0.18), rgba(255, 255, 255, 0.9));
+      border: 1px solid rgba(0, 168, 133, 0.16);
+      font-family: var(--serif);
+    }
+
+    .tag-list span,
+    .about-tags span {
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(16, 21, 20, 0.08);
+      background: rgba(255, 255, 255, 0.58);
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .about-grid {
+      grid-template-columns: 1.08fr 0.92fr;
+    }
+
+    .about-card {
+      padding: 30px;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .contact-note {
+      margin-top: 16px;
+      color: var(--muted-invert);
+      font-size: 0.92rem;
+    }
+
+    footer {
+      padding: 0 0 36px;
+      color: rgba(16, 21, 20, 0.44);
+      font-size: 0.84rem;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      animation: fadeUp 0.82s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.08s; }
+    .delay-2 { animation-delay: 0.16s; }
+    .delay-3 { animation-delay: 0.24s; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1020px) {
+      .hero,
+      .section-heading,
+      .services-grid,
+      .results-grid,
+      .case-grid,
+      .flow-grid,
+      .about-grid,
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card.featured {
+        transform: none;
+      }
+
+      .contact-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar {
+        top: 10px;
+        padding: 14px 16px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-main,
+      .hero-side,
+      .contact-card {
+        padding: 24px;
+      }
+
+      .hero-metrics,
+      .about-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 72px 0;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="shell">
-<nav class="topbar glass fade-up">
-<a class="brand" href="#top"><span class="brand-mark">C</span><span>Cassie Studio</span></a>
-<ul class="nav-links"><li><a href="#services">服务</a></li><li><a href="#projects">案例</a></li><li><a href="#about">优势</a></li><li><a href="#contact">联系</a></li></ul>
-</nav>
-<header class="hero" id="top">
-<section class="hero-copy glass fade-up delay-1">
-<div class="hero-tag">客户需求优先 / 客户体验驱动</div>
-<h1>把网页做成<span>值得成交</span>的产品界面</h1>
-<p>面向个人品牌、小团队与业务展示场景，提供兼具高级视觉、清晰信息结构与 AI 能力接入的网页方案。目标不是能看，而是更专业、更可信、更愿意被联系。</p>
-<div class="hero-actions"><a href="#contact" class="btn btn-primary">立即开始合作</a><a href="#projects" class="btn btn-secondary">查看项目表达</a></div>
-<div class="hero-metrics">
-<article class="metric"><div class="metric-value">01</div><div class="metric-label">客户先理解价值，再决定是否咨询。</div></article>
-<article class="metric"><div class="metric-value">02</div><div class="metric-label">视觉层级与信息节奏围绕体验设计。</div></article>
-<article class="metric"><div class="metric-value">03</div><div class="metric-label">支持 AI 工具嵌入，提高业务效率。</div></article>
-</div>
-</section>
-<aside class="hero-panel glass fade-up delay-2">
-<article class="mini-panel glass"><div class="eyebrow">Product Signal</div><p class="quote">高端感不是堆元素，而是让客户一眼知道你专业、可靠、值得信任。</p><span>页面语言、版式、交互反馈和视觉质感都服务于成交与信任，而不是单纯展示。</span></article>
-<article class="mini-panel glass"><strong>Glassmorphism</strong><span>导航、卡片与关键容器统一使用毛玻璃与半透明层，提升现代感与平台级质感。</span></article>
-<article class="mini-panel glass"><strong>Asymmetric Layout</strong><span>中间服务卡作为视觉中心被放大，形成更有记忆点的页面节奏。</span></article>
-<article class="mini-panel glass"><strong>Motion Detail</strong><span>极细边框和悬停高亮反馈，强化精密、克制、专业的界面气质。</span></article>
-</aside>
-</header>
-<section class="section" id="pain-points">
-<div class="section-heading fade-up"><div><div class="eyebrow">Client Focus</div><h2>客户真正关心的，不是你会什么，而是你能解决什么</h2></div><p>当访问者进入页面，他们通常不会花很多时间研究你是谁，所以页面必须更快回答价值、专业度和合作可信度。</p></div>
-<div class="pain-grid">
-<article class="pain-card glass fade-up delay-1"><h3>看不懂你做什么</h3><p>页面信息混乱、重点不清时，客户无法快速判断你是否适合自己，通常会直接离开。</p></article>
-<article class="pain-card glass fade-up delay-2"><h3>看起来不够专业</h3><p>如果视觉像模板、文案像随手拼接，客户会默认你的服务质量也不稳定。</p></article>
-<article class="pain-card glass fade-up delay-3"><h3>没有行动理由</h3><p>即使客户有兴趣，如果页面没有把优势、流程和联系入口设计清楚，也很难转化成真实咨询。</p></article>
-</div>
-</section>
-<section class="section" id="services">
-<div class="section-heading fade-up"><div><div class="eyebrow">Services</div><h2>服务不是堆功能，而是把客户决策路径设计清楚</h2></div><p>从视觉表达、内容组织到 AI 工具接入，页面的每一块都围绕客户是否更容易理解、信任和行动来设计。</p></div>
-<div class="services-grid">
-<article class="card glass fade-up delay-1"><div class="card-index">01 / Web Presence</div><h3 class="card-title">高质感品牌网页</h3><p>用更高级的视觉语言、清晰的结构和稳定的响应式体验，让客户在手机和桌面端都感受到专业与可信。</p><ul class="card-list"><li>首页定位与价值表达</li><li>服务展示与信任结构</li><li>响应式体验与加载观感</li></ul></article>
-<article class="card glass featured fade-up delay-2"><div class="card-index">02 / Featured</div><h3 class="card-title">AI 工具应用与业务提效</h3><p>把 ChatGPT、Claude 等 AI 能力真正落到业务流程里，不只是会用，而是变成客户看得见的效率优势和交付能力。</p><ul class="card-list"><li>AI 辅助内容生成与整理</li><li>客服话术与说明页优化</li><li>流程化提效与落地页结合</li></ul></article>
-<article class="card glass fade-up delay-3"><div class="card-index">03 / Content Logic</div><h3 class="card-title">内容与转化表达</h3><p>把产品、服务和优势说得更准确，让客户更快理解重点，减少沟通成本，提升咨询意愿。</p><ul class="card-list"><li>服务文案结构优化</li><li>产品亮点提炼与重组</li><li>页面节奏与行动引导</li></ul></article>
-</div>
-</section>
-<section class="section" id="results">
-<div class="section-heading fade-up"><div><div class="eyebrow">Results</div><h2>页面最终要给客户带来的，是更清晰、更信任、更容易成交</h2></div><p>这类页面不是单纯追求炫技，而是用高级视觉包裹清晰结构，让客户在更短时间内形成“值得联系”的判断。</p></div>
-<div class="result-grid">
-<article class="result-card glass fade-up delay-1"><strong>Result 01</strong><h3>首屏先讲价值</h3><p>客户进入页面后的前几秒，就能看到定位、能力和合作方向，减少流失。</p></article>
-<article class="result-card glass fade-up delay-2"><strong>Result 02</strong><h3>品牌感更强</h3><p>通过毛玻璃、衬线标题、非对称结构与精细动效，让页面更像成熟产品，而不是普通模板。</p></article>
-<article class="result-card glass fade-up delay-3"><strong>Result 03</strong><h3>咨询路径更顺</h3><p>把服务逻辑、案例表达与联系入口串成一个完整链路，让客户更容易迈出联系这一步。</p></article>
-</div>
-</section>
-<section class="section" id="projects">
-<div class="section-heading fade-up"><div><div class="eyebrow">Projects</div><h2>案例表达更像产品页面，而不是普通展示模板</h2></div><p>案例区强调结果、场景与体验感，用更接近平台产品的方式呈现服务能力，避免廉价感和模板感。</p></div>
-<div class="project-grid">
-<article class="project-card glass fade-up delay-1"><div class="project-top"><span class="project-badge">Brand Site</span><div class="project-mark">01</div></div><div class="project-copy"><h3>个人品牌官网升级</h3><p>重构首页视觉语言与信息分层，让访问者在更短时间内看清定位、服务能力与联系入口，增强专业感与转化意愿。</p></div><div class="project-tags"><span>高端视觉</span><span>响应式设计</span><span>结构优化</span></div></article>
-<article class="project-card glass fade-up delay-2"><div class="project-top"><span class="project-badge">AI Workflow</span><div class="project-mark">02</div></div><div class="project-copy"><h3>AI 辅助内容工作流</h3><p>把 AI 用于介绍文案、内容整理和业务表达，提高交付效率，同时把这份能力直接体现在页面叙事与客户沟通中。</p></div><div class="project-tags"><span>ChatGPT</span><span>Claude</span><span>Prompt Strategy</span></div></article>
-</div>
-</section>
-<section class="section" id="process">
-<div class="section-heading fade-up"><div><div class="eyebrow">Process</div><h2>从需求到上线，流程也应该让客户放心</h2></div><p>真正好的客户体验不只在页面里，也在合作过程中。流程清晰，客户会更安心，沟通也更高效。</p></div>
-<div class="flow-grid">
-<article class="flow-card glass fade-up delay-1"><span class="flow-step">Step 01</span><h3>明确目标</h3><p>先确认你的客户是谁、页面要承载什么业务目标，再决定视觉和文案策略。</p></article>
-<article class="flow-card glass fade-up delay-2"><span class="flow-step">Step 02</span><h3>设计表达</h3><p>围绕客户体验组织信息层级、视觉重点与转化节奏，让页面同时具备高级感和说服力。</p></article>
-<article class="flow-card glass fade-up delay-3"><span class="flow-step">Step 03</span><h3>上线交付</h3><p>完成页面整理、部署和最终检查，确保你给客户看到的是完整而专业的线上结果。</p></article>
-</div>
-</section>
-<section class="section" id="about">
-<div class="about-layout">
-<article class="about-panel glass fade-up"><div class="about-copy"><div class="eyebrow">About</div><h3>客户体验是第一原则</h3><p>不是为了做一个页面而做页面，而是把客户从进入页面到产生信任、理解价值、愿意联系的整个过程设计出来。</p><p>在视觉上追求克制、清晰和质感，在内容上强调专业表达，在功能上结合 AI 能力，让页面不仅好看，也真正服务业务。</p></div><div class="about-tags"><span>高端单页设计</span><span>客户体验优先</span><span>AI 应用整合</span><span>信息架构优化</span></div></article>
-<article class="about-panel glass fade-up delay-1"><div class="eyebrow">Why It Works</div><div class="about-stats"><div class="stat"><strong>清晰</strong><span>首屏先讲价值，减少用户理解成本。</span></div><div class="stat"><strong>高级</strong><span>毛玻璃、衬线标题、精细边框建立品质感。</span></div><div class="stat"><strong>聚焦</strong><span>服务卡片有主次，视觉中心更明确。</span></div><div class="stat"><strong>专业</strong><span>文案表达克制，避免无效堆砌。</span></div></div></article>
-</div>
-</section>
-<section class="section" id="contact">
-<article class="contact-panel glass fade-up"><div><div class="eyebrow">Contact</div><h3>如果你要的是更像平台级产品的网页表达，可以直接联系</h3><p>适合个人品牌主页、服务介绍页、工作室展示页，以及需要结合 AI 能力强化效率与专业感的业务页面。</p></div><div class="contact-actions"><a class="contact-link" href="mailto:1932966181@qq.com">邮箱联系</a><a class="contact-link" href="https://cassie-dev-wu.github.io" target="_blank" rel="noreferrer">查看线上站点</a></div></article>
-</section>
-<footer><p>© 2026 Cassie Studio. Built for clarity, trust and client experience.</p></footer>
-</div>
+  <div class="shell">
+    <nav class="topbar glass frame fade-up">
+      <a class="brand" href="#top">
+        <span class="brand-mark">C</span>
+        <span>Cassie Studio</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#services">服务</a></li>
+        <li><a href="#results">结果</a></li>
+        <li><a href="#projects">案例</a></li>
+        <li><a href="#contact">联系</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero" id="top">
+      <section class="hero-main glass fade-up delay-1">
+        <div class="hero-tag">高端展示 / 专业表达 / 转化体验</div>
+        <h1>让一个网站真正承担<span>品牌与成交</span>的价值</h1>
+        <p>面向个人品牌、工作室与服务型业务，这是一套更成熟、更高级、也更适合对外使用的展示方案。它的重点不是自我介绍，而是把形象、内容与信任感整理得更完整，让页面本身更有说服力。</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">立即开始合作</a>
+          <a href="#results" class="btn btn-secondary">查看页面价值</a>
+        </div>
+        <div class="hero-metrics">
+          <article class="stat-panel">
+            <div class="metric-number">专业</div>
+            <div class="metric-copy">首屏先建立印象，而不是先解释自己。</div>
+          </article>
+          <article class="stat-panel">
+            <div class="metric-number">清晰</div>
+            <div class="metric-copy">结构更有秩序，信息更容易被理解。</div>
+          </article>
+          <article class="stat-panel">
+            <div class="metric-number">可信</div>
+            <div class="metric-copy">视觉、文案与交互一起提升信任感。</div>
+          </article>
+        </div>
+      </section>
+
+      <aside class="hero-side glass fade-up delay-2">
+        <article class="side-card">
+          <div class="eyebrow invert">Design Direction</div>
+          <p class="hero-quote">克制、明亮、利落，比堆满元素更高级。</p>
+          <p>黑白作为基底，马石油绿作为重点点缀，让整体更现代、更耐看，也更接近成熟品牌页面的审美逻辑。</p>
+        </article>
+        <article class="side-card">
+          <strong>Visual System</strong>
+          <span>玻璃质感、极细边框、非对称重心和留白，共同建立页面的精致感。</span>
+        </article>
+        <article class="side-card">
+          <strong>Copy Tone</strong>
+          <span>文案改为面向买单场景的正式表达，不再使用让人分神的人称和说教式句子。</span>
+        </article>
+        <article class="side-card">
+          <strong>Business Use</strong>
+          <span>这一版更适合直接对外展示，用来承接咨询、合作介绍和品牌展示。</span>
+        </article>
+      </aside>
+    </header>
+
+    <section class="section" id="services">
+      <div class="section-heading fade-up">
+        <div>
+          <div class="eyebrow">Services</div>
+          <h2>页面能力被重新组织成更适合展示与成交的结构</h2>
+        </div>
+        <p>重点不再是简单罗列会什么，而是把一个对外网站真正需要承担的形象表达、内容组织与效率能力，放进更合理的层级里。</p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card glass fade-up delay-1">
+          <span class="service-index">01 / Brand Site</span>
+          <h3>高质感展示网站</h3>
+          <p>围绕品牌形象与专业表达搭建页面结构，让整体气质、视觉层级和阅读体验都更稳定。</p>
+          <ul class="bullet-list">
+            <li>适合个人品牌、工作室、服务型业务</li>
+            <li>兼顾桌面端与移动端体验</li>
+            <li>让页面更像成品，而不是模板</li>
+          </ul>
+        </article>
+
+        <article class="service-card glass featured fade-up delay-2">
+          <span class="service-index">02 / Core Focus</span>
+          <h3>AI 效率与内容整合</h3>
+          <p>将 AI 能力用于内容整理、表达优化与效率提升，让页面背后也具备更流畅的输出方式与执行能力。</p>
+          <ul class="bullet-list">
+            <li>介绍文案与内容结构优化</li>
+            <li>说明页、服务页、介绍页整理</li>
+            <li>把效率优势转化为业务表达优势</li>
+          </ul>
+        </article>
+
+        <article class="service-card glass fade-up delay-3">
+          <span class="service-index">03 / Conversion</span>
+          <h3>更顺畅的咨询路径</h3>
+          <p>让访问者在更短时间内理解重点、形成印象、看到入口，减少“看过就离开”的情况。</p>
+          <ul class="bullet-list">
+            <li>首屏重点更明确</li>
+            <li>页面节奏更有层次</li>
+            <li>行动入口更自然清楚</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="section-heading fade-up">
+        <div>
+          <div class="eyebrow">Results</div>
+          <h2>一个好的页面，最终给外界留下的是更稳定的判断</h2>
+        </div>
+        <p>真正有价值的强化，不只是审美升级，而是让页面在视觉、内容和气质上更统一，让它能自然承接信任感与合作意向。</p>
+      </div>
+      <div class="results-grid">
+        <article class="result-card glass fade-up delay-1">
+          <span class="result-index">Result 01</span>
+          <h3>第一眼更完整</h3>
+          <p>页面不再松散，首屏能够更快建立品牌印象与专业感，减少解释成本。</p>
+        </article>
+        <article class="result-card glass fade-up delay-2">
+          <span class="result-index">Result 02</span>
+          <h3>整体更耐看</h3>
+          <p>黑白基底与马石油绿点缀更克制，也更适合长期使用，不容易显得杂乱或过时。</p>
+        </article>
+        <article class="result-card glass fade-up delay-3">
+          <span class="result-index">Result 03</span>
+          <h3>表达更成熟</h3>
+          <p>文案从“自我说明”调整成“对外展示”，更像一个真正准备好对接合作的网站。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-heading fade-up">
+        <div>
+          <div class="eyebrow">Projects</div>
+          <h2>案例区采用更接近产品页面的呈现方式</h2>
+        </div>
+        <p>案例不只是列出项目，而是强调结果、视觉气质和可落地能力，让页面整体更完整，也更有说服力。</p>
+      </div>
+      <div class="case-grid">
+        <article class="case-card glass fade-up delay-1">
+          <div class="case-top">
+            <span class="case-index">Brand Website</span>
+            <div class="case-mark">01</div>
+          </div>
+          <h3>品牌展示页升级</h3>
+          <p>以清晰定位、统一视觉和简洁结构为核心，让网站从普通展示页升级为更适合对外使用的品牌页面。</p>
+          <div class="tag-list">
+            <span>品牌感</span>
+            <span>响应式</span>
+            <span>结构优化</span>
+          </div>
+        </article>
+
+        <article class="case-card glass fade-up delay-2">
+          <div class="case-top">
+            <span class="case-index">AI Workflow</span>
+            <div class="case-mark">02</div>
+          </div>
+          <h3>内容整理与效率方案</h3>
+          <p>通过 AI 工具参与页面内容组织与表达优化，让整体输出更高效，也更适合持续维护和迭代。</p>
+          <div class="tag-list">
+            <span>ChatGPT</span>
+            <span>Claude</span>
+            <span>内容策略</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="section-heading fade-up">
+        <div>
+          <div class="eyebrow">Process</div>
+          <h2>从需求到上线，流程也应该保持同样的专业感</h2>
+        </div>
+        <p>页面体验不只来自视觉，还来自整体推进方式。结构清楚、目标明确、交付完整，才能真正让网站变成可用成果。</p>
+      </div>
+      <div class="flow-grid">
+        <article class="flow-card glass fade-up delay-1">
+          <span class="flow-step">Step 01</span>
+          <h3>梳理定位</h3>
+          <p>明确页面服务什么场景、传达什么印象、要承接怎样的咨询路径。</p>
+        </article>
+        <article class="flow-card glass fade-up delay-2">
+          <span class="flow-step">Step 02</span>
+          <h3>整理表达</h3>
+          <p>围绕视觉层次、内容顺序与页面节奏完成整体设计，让页面更统一、更顺眼。</p>
+        </article>
+        <article class="flow-card glass fade-up delay-3">
+          <span class="flow-step">Step 03</span>
+          <h3>上线使用</h3>
+          <p>完成部署与最终检查，确保页面能够直接对外展示并稳定使用。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="about-grid">
+        <article class="about-card glass fade-up">
+          <div class="eyebrow">About</div>
+          <h3>页面的重点，是把形象与表达整理得足够成熟</h3>
+          <p>这一版不再强调“解释自己”，而是把整个网站当作一个对外窗口来处理，让视觉、内容、气质和结构更统一。</p>
+          <p>适合用在品牌主页、个人工作室页面、服务介绍页等场景，强调的是完成度与专业感，而不是堆砌信息。</p>
+          <div class="about-tags">
+            <span>白黑基底</span>
+            <span>马石油绿点缀</span>
+            <span>高质感排版</span>
+            <span>商业展示导向</span>
+          </div>
+        </article>
+
+        <article class="about-card glass fade-up delay-1">
+          <div class="eyebrow">Why It Works</div>
+          <div class="about-stats">
+            <div class="stat-panel">
+              <div class="metric-number">克制</div>
+              <div class="metric-copy">颜色干净，整体更高级，不显杂乱。</div>
+            </div>
+            <div class="stat-panel">
+              <div class="metric-number">统一</div>
+              <div class="metric-copy">排版、留白、字体和组件节奏更一致。</div>
+            </div>
+            <div class="stat-panel">
+              <div class="metric-number">自然</div>
+              <div class="metric-copy">文案不再别扭，读起来更像真正网站内容。</div>
+            </div>
+            <div class="stat-panel">
+              <div class="metric-number">实用</div>
+              <div class="metric-copy">可直接作为对外页面使用，而不是演示稿。</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <article class="contact-card glass fade-up">
+        <div>
+          <div class="eyebrow invert">Contact</div>
+          <h3>如果需要一个更成熟、更高级、也更适合正式对外使用的网站，现在就可以开始</h3>
+          <p>适合品牌展示、服务介绍、个人工作室主页，以及希望把专业形象与内容表达整理得更完整的使用场景。</p>
+          <p class="contact-note">这一次的重点，不是“改一改样式”，而是把整个网站整理成真正能拿出去用的成品。</p>
+        </div>
+        <div class="contact-actions">
+          <a class="contact-link" href="mailto:1932966181@qq.com">邮箱联系</a>
+          <a class="contact-link" href="https://cassie-dev-wu.github.io" target="_blank" rel="noreferrer">查看线上站点</a>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <p>© 2026 Cassie Studio. Final refined edition.</p>
+    </footer>
+  </div>
 </body>
 </html>
